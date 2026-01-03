@@ -85,18 +85,16 @@ const publicRoutes: RouteRecordRaw[] = [
     meta: {
       title: '技术文档 - 墨云科技',
       description: '墨云科技技术文档与开发指南'
-    },
-    children: [
-      {
-        // 文档详情
-        path: ':id',
-        name: 'DocDetail',
-        component: () => import('@/views/docs/DocDetailPage.vue'),
-        meta: {
-          title: '文档详情 - 墨云科技'
-        }
-      }
-    ]
+    }
+  },
+  {
+    // 文档详情
+    path: '/docs/:id',
+    name: 'DocDetail',
+    component: () => import('@/views/docs/DocDetailPage.vue'),
+    meta: {
+      title: '文档详情 - 墨云科技'
+    }
   },
   {
     // 联系我们
@@ -126,10 +124,20 @@ const publicRoutes: RouteRecordRaw[] = [
  */
 const adminRoutes: RouteRecordRaw[] = [
   {
+    // 管理员登录
+    path: '/admin/login',
+    name: 'AdminLogin',
+    component: () => import('@/views/admin/AdminLogin.vue'),
+    meta: {
+      title: '管理员登录 - 墨云科技'
+    }
+  },
+  {
     // 后台管理入口
     path: '/admin',
     name: 'Admin',
     component: () => import('@/views/admin/AdminLayout.vue'),
+    redirect: '/admin/dashboard',
     meta: {
       title: '后台管理 - 墨云科技',
       requireAuth: true
@@ -137,68 +145,77 @@ const adminRoutes: RouteRecordRaw[] = [
     children: [
       {
         // 管理后台首页/仪表盘
-        path: '',
+        path: 'dashboard',
         name: 'AdminDashboard',
-        component: () => import('@/views/admin/DashboardPage.vue'),
+        component: () => import('@/views/admin/Dashboard.vue'),
         meta: {
-          title: '仪表盘 - 后台管理'
+          title: '仪表盘'
         }
       },
       {
         // 文章管理
         path: 'articles',
         name: 'AdminArticles',
-        component: () => import('@/views/admin/ArticlesPage.vue'),
+        component: () => import('@/views/admin/ArticleManage.vue'),
         meta: {
-          title: '文章管理 - 后台管理'
+          title: '文章管理'
         }
       },
       {
-        // 文章编辑
-        path: 'articles/edit/:id?',
-        name: 'AdminArticleEdit',
-        component: () => import('@/views/admin/ArticleEditPage.vue'),
+        // 新建文章
+        path: 'articles/new',
+        name: 'AdminArticleNew',
+        component: () => import('@/views/admin/ArticleEdit.vue'),
         meta: {
-          title: '编辑文章 - 后台管理'
+          title: '新建文章'
+        }
+      },
+      {
+        // 编辑文章
+        path: 'articles/edit/:id',
+        name: 'AdminArticleEdit',
+        component: () => import('@/views/admin/ArticleEdit.vue'),
+        meta: {
+          title: '编辑文章'
+        }
+      },
+      {
+        // 新闻管理
+        path: 'news',
+        name: 'AdminNews',
+        component: () => import('@/views/admin/ArticleManage.vue'),
+        meta: {
+          title: '新闻管理'
         }
       },
       {
         // 文档管理
         path: 'docs',
         name: 'AdminDocs',
-        component: () => import('@/views/admin/DocsManagePage.vue'),
+        component: () => import('@/views/admin/ArticleManage.vue'),
         meta: {
-          title: '文档管理 - 后台管理'
+          title: '文档管理'
         }
       },
       {
-        // 联系记录
-        path: 'contacts',
-        name: 'AdminContacts',
-        component: () => import('@/views/admin/ContactsPage.vue'),
+        // 用户管理
+        path: 'users',
+        name: 'AdminUsers',
+        component: () => import('@/views/admin/ArticleManage.vue'),
         meta: {
-          title: '联系记录 - 后台管理'
+          title: '用户管理'
         }
       },
       {
         // 网站设置
         path: 'settings',
         name: 'AdminSettings',
-        component: () => import('@/views/admin/SettingsPage.vue'),
+        component: () => import('@/views/admin/Settings.vue'),
         meta: {
-          title: '网站设置 - 后台管理'
+          title: '系统设置'
         }
       }
     ]
-  },
-  {
-    // 管理员登录
-    path: '/admin/login',
-    name: 'AdminLogin',
-    component: () => import('@/views/admin/LoginPage.vue'),
-    meta: {
-      title: '管理员登录 - 墨云科技'
-    }
   }
 ]
 
