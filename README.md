@@ -1,6 +1,12 @@
 # 墨云科技官方网站
 
 <div align="center">
+  
+  ![Vue](https://img.shields.io/badge/Vue-3.x-4FC08D?style=flat-square&logo=vue.js)
+  ![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?style=flat-square&logo=typescript)
+  ![Node.js](https://img.shields.io/badge/Node.js-18+-339933?style=flat-square&logo=node.js)
+  ![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)
+
   <h3>CloudMo Technology Official Website</h3>
   <p>人工智能技术前沿开发者 | AI Technology Pioneer</p>
 </div>
