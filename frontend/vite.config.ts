@@ -76,17 +76,8 @@ export default defineConfig({
     cssCodeSplit: true,
     // 生成 sourcemap（生产环境建议关闭）
     sourcemap: false,
-    // 压缩方式
-    minify: 'terser',
-    // Terser 压缩配置
-    terserOptions: {
-      compress: {
-        // 移除 console
-        drop_console: true,
-        // 移除 debugger
-        drop_debugger: true,
-      },
-    },
+    // 压缩方式使用esbuild（默认）
+    minify: 'esbuild',
     // Rollup 配置
     rollupOptions: {
       output: {

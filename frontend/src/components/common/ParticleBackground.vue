@@ -245,7 +245,7 @@ function animate(): void {
   const time = performance.now() * 0.001
   
   // 更新着色器时间
-  if (particles && particles.material instanceof THREE.ShaderMaterial) {
+  if (particles && particles.material instanceof THREE.ShaderMaterial && particles.material.uniforms.uTime) {
     particles.material.uniforms.uTime.value = time
   }
   

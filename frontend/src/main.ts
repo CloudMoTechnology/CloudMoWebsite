@@ -26,6 +26,7 @@ import router from './router'
 // Element Plus 组件库
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
+import zhCn from 'element-plus/es/locale/lang/zh-cn'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
 // 全局样式
@@ -63,9 +64,7 @@ app.use(router)
  */
 app.use(ElementPlus, {
   // 设置默认语言为中文
-  locale: {
-    name: 'zh-cn'
-  }
+  locale: zhCn
 })
 
 /**
@@ -93,10 +92,9 @@ userStore.initUserState()
  * 全局错误处理
  * 捕获未处理的错误并记录
  */
-app.config.errorHandler = (err, instance, info) => {
+app.config.errorHandler = (err, _instance, info) => {
   console.error('全局错误:', err)
   console.error('错误信息:', info)
-  console.error('组件实例:', instance)
   
   // 可以在这里添加错误上报逻辑
   // 例如：发送到错误监控服务
@@ -106,7 +104,7 @@ app.config.errorHandler = (err, instance, info) => {
  * 全局警告处理（仅开发环境）
  */
 if (import.meta.env.DEV) {
-  app.config.warnHandler = (msg, instance, trace) => {
+  app.config.warnHandler = (msg, _instance, trace) => {
     console.warn('Vue 警告:', msg)
     console.warn('组件追踪:', trace)
   }

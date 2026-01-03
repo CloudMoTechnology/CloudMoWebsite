@@ -6,7 +6,7 @@
  * @version 1.0.0
  */
 
-import express from 'express'
+import express, { Express } from 'express'
 import cors from 'cors'
 import helmet from 'helmet'
 import morgan from 'morgan'
@@ -21,7 +21,7 @@ import { initializeAdmin } from './utils/init'
 /**
  * 创建 Express 应用实例
  */
-const app = express()
+const app: Express = express()
 
 /**
  * 中间件配置

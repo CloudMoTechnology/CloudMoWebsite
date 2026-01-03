@@ -164,5 +164,7 @@ export default {
   },
   
   // 插件配置
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
 }

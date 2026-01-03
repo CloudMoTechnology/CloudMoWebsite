@@ -7,7 +7,7 @@
  */
 
 import bcrypt from 'bcryptjs'
-import jwt from 'jsonwebtoken'
+import jwt, { SignOptions } from 'jsonwebtoken'
 import { v4 as uuidv4 } from 'uuid'
 import { config } from '../config'
 import type { JwtPayload, ApiResponse } from '../types'
@@ -41,9 +41,10 @@ export async function verifyPassword(password: string, hash: string): Promise<bo
  * @returns JWT Token 字符串
  */
 export function generateToken(payload: JwtPayload): string {
+  // expiresIn 支持字符串格式如 '7d', '24h', '60m' 等
   return jwt.sign(payload, config.jwt.secret, {
     expiresIn: config.jwt.expiresIn
-  })
+  } as SignOptions)
 }
 
 /**

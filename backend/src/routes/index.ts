@@ -6,7 +6,7 @@
  * @version 1.0.0
  */
 
-import { Router } from 'express'
+import { Router, IRouter } from 'express'
 import { authMiddleware } from '../middleware/auth'
 
 // 导入控制器
@@ -17,7 +17,7 @@ import * as docController from '../controllers/doc'
 import * as contactController from '../controllers/contact'
 import * as settingController from '../controllers/setting'
 
-const router = Router()
+const router: IRouter = Router()
 
 // ============================================
 // 公开API路由

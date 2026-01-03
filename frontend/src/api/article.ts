@@ -50,7 +50,7 @@ export const articleApi = {
    * })
    */
   getArticles(params: ArticleQueryParams): Promise<ApiResponse<PaginatedData<Article>>> {
-    return get<PaginatedData<Article>>('/articles', params as Record<string, unknown>)
+    return get<PaginatedData<Article>>('/articles', params as unknown as Record<string, unknown>)
   },
   
   /**

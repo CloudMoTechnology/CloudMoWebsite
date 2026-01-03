@@ -19,7 +19,7 @@ const userStore = useUserStore()
 const sidebarCollapsed = ref(false)
 
 // 当前用户
-const currentUser = computed(() => userStore.userInfo)
+const currentUser = computed(() => userStore.currentUser)
 
 // 菜单项
 const menuItems = [
