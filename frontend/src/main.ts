@@ -32,6 +32,9 @@ import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 // 全局样式
 import './styles/main.scss'
 
+// 自定义指令
+import { registerDirectives } from './directives'
+
 // 状态管理
 import { useAppStore, useUserStore } from './stores'
 
@@ -74,6 +77,12 @@ app.use(ElementPlus, {
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component)
 }
+
+/**
+ * 注册自定义指令
+ * 包括滚动动画等指令
+ */
+registerDirectives(app)
 
 /**
  * 初始化应用状态
