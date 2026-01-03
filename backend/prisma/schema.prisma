@@ -1,0 +1,167 @@
+// Prisma Schema 配置
+// 
+// @description 墨云科技数据库模型定义
+// @author MoYeRanQianZhi
+// @version 1.0.0
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// 数据源配置
+// 支持 SQLite（开发）和 PostgreSQL（生产）
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================
+// 用户模型
+// 用于后台管理系统的用户认证
+// ============================================
+model User {
+  id        String   @id @default(uuid())
+  username  String   @unique
+  email     String   @unique
+  password  String
+  nickname  String?
+  avatar    String?
+  role      String   @default("admin")
+  status    Int      @default(1)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // 关联
+  articles Article[]
+  news     News[]
+  docs     Doc[]
+
+  @@map("users")
+}
+
+// ============================================
+// 文章模型
+// 技术文章、博客等内容
+// ============================================
+model Article {
+  id          String   @id @default(uuid())
+  title       String
+  slug        String   @unique
+  summary     String?
+  content     String
+  coverImage  String?
+  category    String   @default("tech")
+  tags        String?  // JSON 字符串存储标签数组
+  status      String   @default("draft")
+  viewCount   Int      @default(0)
+  authorId    String
+  publishedAt DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // 关联
+  author User @relation(fields: [authorId], references: [id])
+
+  @@map("articles")
+}
+
+// ============================================
+// 新闻模型
+// 公司动态、公告等
+// ============================================
+model News {
+  id          String   @id @default(uuid())
+  title       String
+  slug        String   @unique
+  summary     String?
+  content     String
+  coverImage  String?
+  category    String   @default("news")
+  status      String   @default("draft")
+  viewCount   Int      @default(0)
+  authorId    String
+  publishedAt DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // 关联
+  author User @relation(fields: [authorId], references: [id])
+
+  @@map("news")
+}
+
+// ============================================
+// 技术文档模型
+// API文档、使用指南等
+// ============================================
+model Doc {
+  id          String   @id @default(uuid())
+  title       String
+  slug        String   @unique
+  summary     String?
+  content     String
+  category    String   @default("guide")
+  parentId    String?
+  sortOrder   Int      @default(0)
+  status      String   @default("draft")
+  viewCount   Int      @default(0)
+  authorId    String
+  publishedAt DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // 关联
+  author User @relation(fields: [authorId], references: [id])
+
+  @@map("docs")
+}
+
+// ============================================
+// 联系记录模型
+// 用户通过联系表单提交的信息
+// ============================================
+model Contact {
+  id        String   @id @default(uuid())
+  name      String
+  email     String
+  company   String?
+  phone     String?
+  subject   String
+  message   String
+  status    String   @default("pending")
+  repliedAt DateTime?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("contacts")
+}
+
+// ============================================
+// 网站设置模型
+// 存储网站配置信息
+// ============================================
+model Setting {
+  id        String   @id @default(uuid())
+  key       String   @unique
+  value     String
+  group     String   @default("general")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("settings")
+}
+
+// ============================================
+// 访问日志模型
+// 记录页面访问统计
+// ============================================
+model PageView {
+  id        String   @id @default(uuid())
+  path      String
+  referer   String?
+  userAgent String?
+  ip        String?
+  createdAt DateTime @default(now())
+
+  @@map("page_views")
+}
