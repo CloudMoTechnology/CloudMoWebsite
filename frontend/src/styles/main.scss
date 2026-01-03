@@ -1,0 +1,400 @@
+/**
+ * 全局样式文件
+ * 
+ * @description 墨云官网全局样式定义
+ * @author MoYeRanQianZhi
+ * @version 1.0.0
+ * 
+ * 文件结构：
+ * 1. TailwindCSS 导入
+ * 2. 字体导入
+ * 3. CSS 重置与基础样式
+ * 4. 全局工具类
+ * 5. 动画定义
+ * 6. 滚动条样式
+ */
+
+// ============================================
+// TailwindCSS 导入
+// ============================================
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// ============================================
+// 字体导入 - Google Fonts
+// ============================================
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&display=swap');
+
+// ============================================
+// CSS 重置与基础样式
+// ============================================
+
+/**
+ * 全局盒模型设置
+ * 使用 border-box 确保 padding 和 border 包含在元素宽度内
+ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/**
+ * HTML 根元素设置
+ * - 平滑滚动行为
+ * - 基础字体大小（用于 rem 计算）
+ */
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/**
+ * Body 基础样式
+ * - 墨黑背景色
+ * - 浅色文字
+ * - 主字体设置
+ */
+body {
+  font-family: $font-family-sans;
+  background-color: $color-mo-black-950;
+  color: $color-mo-black-100;
+  line-height: $line-height-normal;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/**
+ * 链接样式重置
+ */
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color $transition-normal $ease-in-out;
+  
+  &:hover {
+    color: $color-mo-cloud-400;
+  }
+}
+
+/**
+ * 图片样式
+ */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/**
+ * 按钮重置
+ */
+button {
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+}
+
+/**
+ * 列表重置
+ */
+ul, ol {
+  list-style: none;
+}
+
+// ============================================
+// 全局工具类
+// ============================================
+
+/**
+ * 墨云渐变文字效果
+ * 用于标题和重要文字的渐变色效果
+ */
+.mo-gradient-text {
+  background: linear-gradient(135deg, $color-mo-cloud-400, $color-mo-purple-400, $color-mo-gold-400);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/**
+ * 墨云发光边框
+ * 用于卡片和容器的发光边框效果
+ */
+.mo-glow-border {
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(135deg, $color-mo-cloud-500, $color-mo-purple-500, $color-mo-gold-500);
+    border-radius: inherit;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity $transition-normal $ease-in-out;
+  }
+  
+  &:hover::before {
+    opacity: 1;
+  }
+}
+
+/**
+ * 玻璃态效果
+ * 用于导航栏和卡片的毛玻璃效果
+ */
+.mo-glass {
+  background: rgba(13, 13, 13, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/**
+ * 墨云卡片样式
+ * 统一的卡片容器样式
+ */
+.mo-card {
+  background: linear-gradient(135deg, rgba(26, 26, 26, 0.9), rgba(13, 13, 13, 0.9));
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: $border-radius-lg;
+  padding: $spacing-lg;
+  transition: all $transition-normal $ease-in-out;
+  
+  &:hover {
+    border-color: rgba(14, 165, 233, 0.3);
+    box-shadow: $shadow-glow-blue;
+    transform: translateY(-4px);
+  }
+}
+
+/**
+ * 墨云按钮样式
+ * 主要操作按钮
+ */
+.mo-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-sm $spacing-lg;
+  font-size: $font-size-base;
+  font-weight: $font-weight-medium;
+  border-radius: $border-radius-md;
+  transition: all $transition-normal $ease-in-out;
+  position: relative;
+  overflow: hidden;
+  
+  // 主要按钮
+  &--primary {
+    background: linear-gradient(135deg, $color-mo-cloud-600, $color-mo-cloud-500);
+    color: white;
+    
+    &:hover {
+      background: linear-gradient(135deg, $color-mo-cloud-500, $color-mo-cloud-400);
+      box-shadow: $shadow-glow-blue;
+      transform: translateY(-2px);
+    }
+  }
+  
+  // 次要按钮
+  &--secondary {
+    background: transparent;
+    border: 1px solid $color-mo-cloud-500;
+    color: $color-mo-cloud-400;
+    
+    &:hover {
+      background: rgba(14, 165, 233, 0.1);
+      border-color: $color-mo-cloud-400;
+    }
+  }
+  
+  // 金色按钮
+  &--gold {
+    background: linear-gradient(135deg, $color-mo-gold-600, $color-mo-gold-500);
+    color: $color-mo-black-950;
+    
+    &:hover {
+      background: linear-gradient(135deg, $color-mo-gold-500, $color-mo-gold-400);
+      box-shadow: $shadow-glow-gold;
+      transform: translateY(-2px);
+    }
+  }
+}
+
+/**
+ * 章节标题样式
+ */
+.mo-section-title {
+  font-family: $font-family-serif;
+  font-size: $font-size-4xl;
+  font-weight: $font-weight-bold;
+  text-align: center;
+  margin-bottom: $spacing-xl;
+  
+  @media (max-width: $breakpoint-md) {
+    font-size: $font-size-3xl;
+  }
+}
+
+/**
+ * 章节副标题
+ */
+.mo-section-subtitle {
+  font-size: $font-size-lg;
+  color: $color-mo-black-400;
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto $spacing-3xl;
+}
+
+// ============================================
+// 动画定义
+// ============================================
+
+/**
+ * 淡入上升动画
+ */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/**
+ * 淡入动画
+ */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/**
+ * 脉冲发光动画
+ */
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 20px rgba(14, 165, 233, 0.3);
+  }
+  50% {
+    opacity: 0.8;
+    box-shadow: 0 0 40px rgba(14, 165, 233, 0.5);
+  }
+}
+
+/**
+ * 漂浮动画
+ */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/**
+ * 旋转动画
+ */
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/**
+ * 墨水扩散动画
+ */
+@keyframes inkSpread {
+  0% {
+    transform: scale(0);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+// 动画工具类
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s $ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s $ease-out forwards;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+// ============================================
+// 滚动条样式
+// ============================================
+
+/**
+ * 自定义滚动条
+ * 适配墨云主题的深色滚动条
+ */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: $color-mo-black-900;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, $color-mo-cloud-600, $color-mo-purple-600);
+  border-radius: $border-radius-full;
+  
+  &:hover {
+    background: linear-gradient(180deg, $color-mo-cloud-500, $color-mo-purple-500);
+  }
+}
+
+// Firefox 滚动条
+* {
+  scrollbar-width: thin;
+  scrollbar-color: $color-mo-cloud-600 $color-mo-black-900;
+}
+
+// ============================================
+// 选中文字样式
+// ============================================
+
+::selection {
+  background: rgba(14, 165, 233, 0.3);
+  color: white;
+}
+
+::-moz-selection {
+  background: rgba(14, 165, 233, 0.3);
+  color: white;
+}

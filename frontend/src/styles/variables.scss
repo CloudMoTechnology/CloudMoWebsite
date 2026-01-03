@@ -1,0 +1,167 @@
+/**
+ * SCSS 全局变量文件
+ * 
+ * @description 墨云官网全局样式变量定义
+ * @author MoYeRanQianZhi
+ * @version 1.0.0
+ * 
+ * 变量命名规范：
+ * - 颜色变量：$color-{name}-{shade}
+ * - 间距变量：$spacing-{size}
+ * - 字体变量：$font-{property}
+ * - 动画变量：$animation-{name}
+ */
+
+// ============================================
+// 颜色系统 - Color System
+// ============================================
+
+// 主色调：墨黑系列 - 高级黑风格
+$color-mo-black-50: #f7f7f7;
+$color-mo-black-100: #e3e3e3;
+$color-mo-black-200: #c8c8c8;
+$color-mo-black-300: #a4a4a4;
+$color-mo-black-400: #818181;
+$color-mo-black-500: #666666;
+$color-mo-black-600: #515151;
+$color-mo-black-700: #434343;
+$color-mo-black-800: #383838;
+$color-mo-black-900: #1a1a1a;
+$color-mo-black-950: #0d0d0d;
+
+// 云色调：科技蓝系列
+$color-mo-cloud-50: #f0f9ff;
+$color-mo-cloud-100: #e0f2fe;
+$color-mo-cloud-200: #bae6fd;
+$color-mo-cloud-300: #7dd3fc;
+$color-mo-cloud-400: #38bdf8;
+$color-mo-cloud-500: #0ea5e9;
+$color-mo-cloud-600: #0284c7;
+$color-mo-cloud-700: #0369a1;
+$color-mo-cloud-800: #075985;
+$color-mo-cloud-900: #0c4a6e;
+
+// 古风金色：高贵典雅
+$color-mo-gold-50: #fefce8;
+$color-mo-gold-100: #fef9c3;
+$color-mo-gold-200: #fef08a;
+$color-mo-gold-300: #fde047;
+$color-mo-gold-400: #facc15;
+$color-mo-gold-500: #eab308;
+$color-mo-gold-600: #ca8a04;
+$color-mo-gold-700: #a16207;
+
+// 墨韵紫：古风与科技融合
+$color-mo-purple-50: #faf5ff;
+$color-mo-purple-100: #f3e8ff;
+$color-mo-purple-200: #e9d5ff;
+$color-mo-purple-300: #d8b4fe;
+$color-mo-purple-400: #c084fc;
+$color-mo-purple-500: #a855f7;
+$color-mo-purple-600: #9333ea;
+$color-mo-purple-700: #7c3aed;
+
+// ============================================
+// 间距系统 - Spacing System
+// ============================================
+
+$spacing-xs: 0.25rem;   // 4px
+$spacing-sm: 0.5rem;    // 8px
+$spacing-md: 1rem;      // 16px
+$spacing-lg: 1.5rem;    // 24px
+$spacing-xl: 2rem;      // 32px
+$spacing-2xl: 3rem;     // 48px
+$spacing-3xl: 4rem;     // 64px
+$spacing-4xl: 6rem;     // 96px
+
+// ============================================
+// 字体系统 - Typography System
+// ============================================
+
+// 字体族
+$font-family-sans: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+$font-family-serif: 'Noto Serif SC', 'SimSun', serif;
+$font-family-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+// 字体大小
+$font-size-xs: 0.75rem;    // 12px
+$font-size-sm: 0.875rem;   // 14px
+$font-size-base: 1rem;     // 16px
+$font-size-lg: 1.125rem;   // 18px
+$font-size-xl: 1.25rem;    // 20px
+$font-size-2xl: 1.5rem;    // 24px
+$font-size-3xl: 1.875rem;  // 30px
+$font-size-4xl: 2.25rem;   // 36px
+$font-size-5xl: 3rem;      // 48px
+$font-size-6xl: 3.75rem;   // 60px
+
+// 字重
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+// 行高
+$line-height-tight: 1.25;
+$line-height-normal: 1.5;
+$line-height-relaxed: 1.75;
+
+// ============================================
+// 动画系统 - Animation System
+// ============================================
+
+// 过渡时间
+$transition-fast: 150ms;
+$transition-normal: 300ms;
+$transition-slow: 500ms;
+
+// 缓动函数
+$ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+$ease-out: cubic-bezier(0, 0, 0.2, 1);
+$ease-in: cubic-bezier(0.4, 0, 1, 1);
+$ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+// ============================================
+// 阴影系统 - Shadow System
+// ============================================
+
+$shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+$shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+$shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+$shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+$shadow-glow-blue: 0 0 20px rgba(14, 165, 233, 0.3);
+$shadow-glow-gold: 0 0 20px rgba(234, 179, 8, 0.3);
+$shadow-glow-purple: 0 0 20px rgba(168, 85, 247, 0.3);
+
+// ============================================
+// 边框系统 - Border System
+// ============================================
+
+$border-radius-sm: 0.25rem;   // 4px
+$border-radius-md: 0.5rem;    // 8px
+$border-radius-lg: 0.75rem;   // 12px
+$border-radius-xl: 1rem;      // 16px
+$border-radius-full: 9999px;
+
+// ============================================
+// 断点系统 - Breakpoint System
+// ============================================
+
+$breakpoint-sm: 640px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+$breakpoint-xl: 1280px;
+$breakpoint-2xl: 1536px;
+
+// ============================================
+// Z-Index 层级系统
+// ============================================
+
+$z-index-dropdown: 1000;
+$z-index-sticky: 1020;
+$z-index-fixed: 1030;
+$z-index-modal-backdrop: 1040;
+$z-index-modal: 1050;
+$z-index-popover: 1060;
+$z-index-tooltip: 1070;
