@@ -1,0 +1,47 @@
+# Docker 忽略文件
+# 
+# @description 墨云科技官网 Docker 构建忽略配置
+# @author MoYeRanQianZhi
+
+# Git
+.git
+.gitignore
+
+# Node
+node_modules
+npm-debug.log*
+pnpm-debug.log*
+
+# 开发文件
+*.md
+!README.md
+.env
+.env.*
+!.env.example
+
+# IDE
+.idea
+.vscode
+*.swp
+*.swo
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 测试
+coverage
+*.test.ts
+*.spec.ts
+
+# 构建产物（将在容器内重新构建）
+dist
+build
+
+# 数据库文件
+*.db
+*.db-journal
+
+# 上传文件
+uploads/*
+!uploads/.gitkeep

@@ -1,0 +1,58 @@
+# Docker Compose 配置
+# 
+# @description 墨云科技官网 Docker 部署配置
+# @author MoYeRanQianZhi
+# @version 1.0.0
+#
+# 使用方法:
+#   开发环境: docker-compose up -d
+#   生产环境: docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+
+version: '3.8'
+
+services:
+  # 前端服务
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: cloudmo-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - cloudmo-network
+    restart: unless-stopped
+
+  # 后端服务
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: cloudmo-backend
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - DATABASE_URL=file:./data/cloudmo.db
+      - JWT_SECRET=${JWT_SECRET:-cloudmo-jwt-secret-change-in-production}
+      - JWT_EXPIRES_IN=7d
+      - CORS_ORIGIN=http://localhost
+    volumes:
+      - backend-data:/app/data
+      - backend-uploads:/app/uploads
+    networks:
+      - cloudmo-network
+    restart: unless-stopped
+
+networks:
+  cloudmo-network:
+    driver: bridge
+
+volumes:
+  backend-data:
+    driver: local
+  backend-uploads:
+    driver: local
