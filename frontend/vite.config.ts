@@ -54,6 +54,8 @@ export default defineConfig({
     host: '0.0.0.0',
     // 自动打开浏览器
     open: false,
+    // 允许所有主机访问（开发环境）
+    allowedHosts: ['.manus.computer', 'localhost'],
     // 跨域代理配置
     proxy: {
       // API 代理：将 /api 请求转发到后端服务
